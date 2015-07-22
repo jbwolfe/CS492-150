@@ -84,6 +84,7 @@
         context.putImageData(ditherFloydSteinberg(imageData), 0, 0);
 
         var img = document.createElement('img');
+        img.id = "result";
         img.src = canvas.toDataURL("image/png");
 
         var output = document.getElementById("output");
@@ -199,6 +200,13 @@
 
       // Attach listener to uploader button.
       document.getElementById('uploader').addEventListener('change', dither, false);
+    </script>
+    <script type="text/javascript">
+      $('#result').click(function() {
+        var style = $('#foo').css;
+        console.log(style);
+    });
+});
     </script>
 
   </body>
