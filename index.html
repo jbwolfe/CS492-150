@@ -24,8 +24,6 @@
         border-radius: 2em;
       }
       div.output {
-        background-color: #000;
-        max-width: 75%;
         height: auto;
         position: relative;
         display: block;
@@ -89,10 +87,10 @@
         var img = document.createElement('img');
         img.id = "result";
         img.src = canvas.toDataURL("image/png");
-        img.style.maxWidth = "100%";
+        img.style.maxWidth = "80%";
         img.onclick = function() {
-          if(img.style.maxWidth != '100%') {
-            img.style.maxWidth = '100%';
+          if(img.style.maxWidth != '80%') {
+            img.style.maxWidth = '80%';
           } else {
             img.style.maxWidth = '';
           }
