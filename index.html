@@ -36,32 +36,6 @@
         display: block;
         margin: auto;
       }
-
-		.zoom {
-			display:inline-block;
-			position: relative;
-		}
-		/* magnifying glass icon */
-		.zoom:after {
-			content:'';
-			display:block; 
-			width:33px; 
-			height:33px; 
-			position:absolute; 
-			top:0;
-			right:0;
-			background:url(icon.png);
-		}
-		.zoom img {
-			display: block;
-		}
-		.zoom img::selection { 
-		  background-color: transparent; 
-		}
-
-		#ex2 img:hover { cursor: url(grab.cur), default; }
-		#ex2 img:active { cursor: url(grabbed.cur), default; }
-      
       a:link, a:visited {
         color: #38488f;
         text-decoration: none;
@@ -112,14 +86,9 @@
         var img = document.createElement('img');
         img.src = canvas.toDataURL("image/png");
 
-        // Span used for image zooming plugin
-        var span = document.createElement("span");
-        span.id = "result";
-        span.appendChild(img);
-
         var output = document.getElementById("output");
         $("#output").empty();
-        output.appendChild(span);
+        output.appendChild(img);
       }
 
       /**
@@ -231,8 +200,6 @@
       // Attach listener to uploader button.
       document.getElementById('uploader').addEventListener('change', dither, false);
     </script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.zoom.min.js"></script>
 
   </body>
 </html>
