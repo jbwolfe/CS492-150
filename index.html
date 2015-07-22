@@ -86,8 +86,16 @@
         var img = document.createElement('img');
         img.src = canvas.toDataURL("image/png");
 
+        // Span used for image zooming plugin
+        var span = document.createElement("span");
+        span.id = "result";
+        span.appendChild(img);
+
         var output = document.getElementById("output");
-        output.appendChild(img);
+        output.appendChild(span);
+        
+        // Image zooming plugin
+        $("#result").zoom()
       }
 
       /**
@@ -168,10 +176,6 @@
 
         // When reader is ready, setup results section
         reader.onload = function(e) {
-          // Span used for image zooming plugin
-          var span = document.createElement("span");
-          span.id = "result";
-
           var img = document.createElement("img");
 
           // When resuls section is ready, prepare dithering environment
@@ -193,8 +197,6 @@
 
           // Set results section to result
           img.src = e.target.result;
-          span.appendChile(img);
-          
         };
 
         // Pass file to reader for processesing
