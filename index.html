@@ -32,7 +32,6 @@
         margin: 0 auto;
       }
       img{
-        max-width: 100%;
         width: auto;
         height: auto;
         display: block;
@@ -90,6 +89,7 @@
         var img = document.createElement('img');
         img.id = "result";
         img.src = canvas.toDataURL("image/png");
+        img.style.maxWidth = "100%";
         img.onclick = function() {
           if(img.style.maxWidth != '100%') {
             img.style.maxWidth = '100%';
