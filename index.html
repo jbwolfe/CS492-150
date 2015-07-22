@@ -93,9 +93,6 @@
 
         var output = document.getElementById("output");
         output.appendChild(span);
-        
-        // Image zooming plugin
-        $("#result").zoom()
       }
 
       /**
@@ -193,6 +190,9 @@
 
             // Dithering environment prepared, dither image
             bitview(canvas);
+            
+            // Image zooming plugin
+            $("#result").zoom()
           };
 
           // Set results section to result
