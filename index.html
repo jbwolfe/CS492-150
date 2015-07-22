@@ -89,9 +89,16 @@
         var img = document.createElement('img');
         img.id = "result";
         img.src = canvas.toDataURL("image/png");
+        img.onclick = function() {
+          if(img.style.width != 'auto') {
+            img.style.width = 'auto';
+          } else {
+            img.style.width = 80%;
+          }
+        };
 
         var output = document.getElementById("output");
-        $("#output").empty();
+        output.html = "";
         output.appendChild(img);
       }
 
@@ -203,13 +210,6 @@
 
       // Attach listener to uploader button.
       document.getElementById('uploader').addEventListener('change', dither, false);
-    </script>
-    <script type="text/javascript">
-      $('#result').click(function() {
-        var style = $('#foo').css;
-        console.log(style);
-          });
-      });
     </script>
 
   </body>
