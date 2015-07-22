@@ -2,56 +2,56 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>CS492-150 by jbwolfe</title>
+    <title>CS492-151: Software Mobility</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
       body {
-          background-color: #f0f0f2;
-          margin: 0;
-          padding: 0;
-          font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-          
+        background-color: #f0f0f2;
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
-      div {
-          width: 600px;
-          margin: 5em auto;
-          padding: 50px;
-          background-color: #fff;
-          border-radius: 1em;
+      div.main {
+        width: 600px;
+        margin: 5em auto;
+        padding: 50px;
+        background-color: #fff;
+        border-radius: 1em;
       }
       a:link, a:visited {
-          color: #38488f;
-          text-decoration: none;
+        color: #38488f;
+        text-decoration: none;
       }
       @media (max-width: 700px) {
-          body {
-              background-color: #fff;
-          }
-          div {
-              width: auto;
-              margin: 0 auto;
-              border-radius: 0;
-              padding: 1em;
-          }
+        body {
+          background-color: #fff;
+        }
+        div.main {
+          width: auto;
+          margin: 0 auto;
+          border-radius: 0;
+          padding: 1em;
+        }
       }
     </style>  
   </head>
+
   <body>
-    <section class="page-header">
-      <h1 class="project-name">CS492-150</h1>
-      <h2 class="project-tagline">Software Mobility</h2>
-      <a href="https://github.com/jbwolfe/CS492-150" class="btn">View on GitHub</a>
-    </section>
-    <br>
-    <section class="main-content">
-      <div>
-        <p>Please use the button below to select a file and see it dithered belowed. The dithering algorithm used is Floyd-Steinberg dithering.</p>
-      </div>
-      <div id="form">
-        <input type="file" id="uploader"/>
-      </div>
-      <div id="output"></div>
-      
+    <div class="main">
+      <section class="page-header">
+        <h1 class="project-name">CS492-150</h1>
+        <h2 class="project-tagline">Software Mobility</h2>
+        <a href="https://github.com/jbwolfe/CS492-150" class="btn">View on GitHub</a>
+      </section>
+      <br>
+      <section class="main-content">
+        <p>Please use the button below to select an image and see it dithered belowed. The dithering algorithm used is Floyd-Steinberg dithering.</p>
+        <div id="form">
+          <input type="file" id="uploader"/>
+        </div>
+        <div id="output"></div>
+      </section>
+    
       <script type="text/javascript">
         /**
         * BitView image using canvas as image source 
@@ -59,16 +59,16 @@
         function bitview(canvas) {
           var context = canvas.getContext('2d');
           var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-          
+
           context.putImageData(ditherFloydSteinberg(imageData), 0, 0);
-          
+
           var img = document.createElement('img');
           img.src = canvas.toDataURL("image/png");
-          
+
           var output = document.getElementById("output");
           output.appendChild(img);
         }
-        
+
         /**
         * Computer Quantization Error
         */
@@ -77,7 +77,7 @@
           data[i + 1] = data[i + 1] + multiplier * error[1];
           data[i + 2] = data[i + 2] + multiplier * error[2];
         }
-        
+
         /**
         * Floyd-Steinberg Dithering Algorithm
         */
@@ -85,7 +85,7 @@
           var width  = imageData.width;
           var height = imageData.height;
           var data   = imageData.data;
-          
+
           for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
               i = 4 * (y * width + x);
@@ -126,65 +126,64 @@
               }
             }
           }
-        
+
           return imageData;
         }
-        
+
         /**
         * When uploader changes, begin dithering process
         */
         function dither(e) {
           // Get file and check if it's an image
           var file = e.target.files[0];
-          
+
           if(!file.type.match('image.*')) {
             console.log('Error: file not an image...')
             return;
           }
-          
+
           // Create a reader to process file data
           var reader = new FileReader();
-          
+
           // When reader is ready, setup results section
           reader.onload = function(e) {
             var img = document.createElement("img");
-            
+
             // When resuls section is ready, prepare dithering environment
             img.onload = function() {
               var canvas = document.createElement("canvas");
               var context = canvas.getContext('2d');
-              
+
               var w = img.width;
               var h = img.height;
-              
+
               canvas.width = w;
               canvas.height = h;
-              
+
               context.drawImage(img, 0, 0);
-              
+
               // Dithering environment prepared, dither image
               bitview(canvas);
             };
-            
+
             // Set results section to result
             img.src = e.target.result;
           };
-          
+
           // Pass file to reader for processesing
           reader.readAsDataURL(file);
           document.getElementById("output").innerHTML = "";
         }
-        
+
         // Attach listener to uploader button.
         document.getElementById('uploader').addEventListener('change', dither, false);
-	    </script>
+      </script>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/jbwolfe/CS492-150">CS492-150</a> is maintained by <a href="https://github.com/jbwolfe">jbwolfe</a>.</span>
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-
-    </section>
+    </div>
   </body>
 </html>
 
